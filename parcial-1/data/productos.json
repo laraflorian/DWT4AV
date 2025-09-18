@@ -1,29 +1,27 @@
 [
     {
-        "id": 1,
-        "nombre": "labial 1",
+        "id": "1",
+        "nombre": "labial 4",
         "marca": "Milk",
-        "imagen": "img",
-        "alt": "none",
-        "link":"none",
-        "precio": 2000
+        "precio": "2000"
     },
     {
         "id": 2,
         "nombre": "labial 2",
         "marca": "Maybelline",
-        "imagen": "img",
-        "alt": "none",
-        "link":"none",
         "precio": 2000
     },
     {
         "id": 3,
         "nombre": "labial 3",
         "marca": "Angels",
-        "imagen": "img",
-        "alt": "none",
-        "link":"none",
         "precio": 2000
+    },
+    {
+        "id": "5",
+        "nombre": "labial BB",
+        "marca": "loreal",
+        "precio": "20000",
+        "eliminado": true
     }
 ]
