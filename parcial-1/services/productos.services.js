@@ -4,9 +4,9 @@ import { readFile, writeFile } from "node:fs/promises"
 export async function getProductos(eliminado = true) {
     return readFile("./data/productos.json", "utf-8")
         .then((data) => JSON.parse(data))
-        .then( productos => {
-            if( eliminado == true){
-                return productos.filter( p => p.eliminado != true)
+        .then(productos => {
+            if (eliminado == true) {
+                return productos.filter(p => p.eliminado != true)
             } else {
                 return productos
             }
@@ -74,8 +74,8 @@ export function editarProducto(producto) {
 export function borrarProducto(id) {
     return getProductos().then(async (productos) => {
 
-        const nuevoListado = productos.map( p => {
-            if(p.id == id){
+        const nuevoListado = productos.map(p => {
+            if (p.id == id) {
                 p.eliminado = true
             }
             return p
@@ -83,5 +83,26 @@ export function borrarProducto(id) {
         await writeFile("./data/productos.json", JSON.stringify(nuevoListado))
 
         return id
+    });
+}
+
+export function actualizarProducto(producto) {
+
+    return getProductos().then(async (productos) => {
+        const nuevoListado = productos.map( p => {
+            if(p.id == producto.id){
+                return{
+                    id: p.id,
+                    nombre: producto.nombre || p.nombre,
+                    marca: producto.marca || p.marca,
+                    precio: producto.precio || p.precio
+                }
+            }
+            return p 
+        })
+
+
+        await writeFile("./data/productos.json", JSON.stringify(productos))
+        return producto
     });
 }
