@@ -1,7 +1,7 @@
 import * as services from "../../services/productos.services.js"
 
 export function getProductos(req, res) {
-    services.getProductos()
+    services.getProductos(req.query)
         .then(productos => res.status(200).json(productos))
 }
 
@@ -19,9 +19,12 @@ export function getProductoPorId(req, res) {
 
 export function crearProducto(req, res) {
     const producto = {
+        categoria: req.body.categoria,
         nombre: req.body.nombre,
         marca: req.body.marca,
-        precio: req.body.precio
+        precio: req.body.precio,
+        imagen: req.body.imagen,
+        link: req.body.link
     }
 
     services.guardarProducto(producto)
@@ -40,9 +43,12 @@ export function reemplazarProducto(req, res) {
     const id = req.params.id
     const producto = {
         id: id,
+        categoria: req.body.categoria,
         nombre: req.body.nombre,
         marca: req.body.marca,
-        precio: req.body.precio
+        precio: req.body.precio,
+        imagen: req.body.imagen,
+        link: req.body.link
     }
     services.editarProducto(producto)
         .then(productoEditado => res.status(202).json(productoEditado))
@@ -53,9 +59,12 @@ export function actualizarProducto(req, res) {
     const id = req.params.id
     const producto = {
         id: id,
+        categoria: req.body.categoria,
         nombre: req.body.nombre,
         marca: req.body.marca,
-        precio: req.body.precio
+        precio: req.body.precio,
+        imagen: req.body.imagen,
+        link: req.body.link
     }
     services.actualizarProducto(producto)
         .then(productoEditado => res.status(202).json(productoEditado))
